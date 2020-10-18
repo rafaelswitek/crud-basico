@@ -56,7 +56,7 @@ class ClientController
         if (is_null($id) || $id === false) { //Verifica se o ID existe ou se a validação foi bem sucedida
             $client = new Client(); //Se não tiver ID cria uma instancia de cliente
         } else {
-            $client = $this->entityManager->find(Client::class, $id);//Se tiver ID busca o cliente
+            $client = $this->entityManager->find(Client::class, $id); //Se tiver ID busca o cliente
         }
 
         $name = filter_input( //Valida o Nome passado
@@ -89,6 +89,27 @@ class ClientController
         $client->setPhone($phone);
 
         $this->entityManager->persist($client); //Salva dados no banco
+        $this->entityManager->flush();
+
+        header('Location: /');
+    }
+
+    public function delete()
+    {
+        $id = filter_input( //Valida o ID passado
+            INPUT_GET,
+            'id',
+            FILTER_VALIDATE_INT
+        );
+
+        if (is_null($id) || $id === false) { //Verifica se o ID existe ou se a validação foi bem sucedida
+            header('Location: /');
+            return;
+        }
+
+        $aluno = $this->entityManager->getReference(Client::class, $id); //Se tiver ID busca o cliente
+
+        $this->entityManager->remove($aluno); //remove dados do banco
         $this->entityManager->flush();
 
         header('Location: /');
