@@ -8,5 +8,10 @@
             "email": "rafaelswitek@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Switek\\Crud\\": "src/"
+        }
+    }
 }
