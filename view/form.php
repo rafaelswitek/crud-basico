@@ -2,7 +2,8 @@
 
 <h1 class="text-center">Formulario</h1>
 
-<form method="POST" action="/store">
+<form method="POST" action="/salva">
+    <input type="hidden" name="id" value="<?= isset($client) ? $client->getId() : ''; ?>">
     <div class="form-group">
         <label for="name">Nome*</label>
         <input type="text" class="form-control" name="name" value="<?= isset($client) ? $client->getName() : ''; ?>" placeholder="Nome completo" required>
