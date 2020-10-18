@@ -13,28 +13,19 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>John Doe</td>
-            <td>john.doe@test.com</td>
-            <td>000.000.000-00</td>
-            <td>(00) 0000-0000</td>
-            <td>
-                <a href="#" class="btn btn-primary">Editar</a>
-                <a href="#" class="btn btn-danger">Excluir</a>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>João Silva</td>
-            <td>joao.silva@teste.com</td>
-            <td>000.000.000-00</td>
-            <td>(00) 0000-0000</td>
-            <td>
-                <a href="#" class="btn btn-primary">Editar</a>
-                <a href="#" class="btn btn-danger">Excluir</a>
-            </td>
-        </tr>
+        <?php foreach ($clients as $row) : ?>
+            <tr>
+                <th scope="row"><?= $row->getID(); ?></th>
+                <td><?= $row->getName(); ?></td>
+                <td><?= $row->getEmail(); ?></td>
+                <td><?= $row->getCpf(); ?></td>
+                <td><?= $row->getPhone(); ?></td>
+                <td>
+                    <a href="/editar-cliente?id=<?= $row->getID(); ?>" class="btn btn-primary">Editar</a>
+                    <a href="/excluir-cliente?id=<?= $row->getID(); ?>" class="btn btn-danger">Excluir</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
     </tbody>
 </table>
 </div>
