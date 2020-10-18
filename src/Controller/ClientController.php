@@ -3,12 +3,12 @@
 namespace Switek\Crud\Controller;
 
 use Switek\Crud\Entity\Client;
-use Switek\Crud\Helper\LoadViewTrait;
 use Switek\Crud\Infra\EntityManagerFactory;
+use Switek\Crud\Helper\{FlashMessageTrait, LoadViewTrait};
 
 class ClientController
 {
-    use LoadViewTrait;
+    use LoadViewTrait, FlashMessageTrait;
 
     private $entityManager;
 
@@ -45,6 +45,7 @@ class ClientController
         );
 
         if (is_null($id) || $id === false) { //Verifica se o ID existe ou se a validação foi bem sucedida
+            $this->defineMessage('danger', "O ID não é um numero.");
             header('Location: /');
             return;
         }
@@ -65,8 +66,10 @@ class ClientController
 
         if (is_null($id) || $id === false) { //Verifica se o ID existe ou se a validação foi bem sucedida
             $client = new Client(); //Se não tiver ID cria uma instancia de cliente
+            $type = 'cadastrado';
         } else {
             $client = $this->entityManager->find(Client::class, $id); //Se tiver ID busca o cliente
+            $type = 'editado';
         }
 
         $name = filter_input( //Valida o Nome passado
@@ -101,6 +104,8 @@ class ClientController
         $this->entityManager->persist($client); //Salva dados no banco
         $this->entityManager->flush();
 
+        $this->defineMessage('success', "Cliente {$name} {$type}.");
+
         header('Location: /');
     }
 
@@ -113,13 +118,15 @@ class ClientController
         );
 
         if (is_null($id) || $id === false) { //Verifica se o ID existe ou se a validação foi bem sucedida
+            $this->defineMessage('danger', "O ID não é um numero.");
             header('Location: /');
             return;
         }
 
-        $aluno = $this->entityManager->getReference(Client::class, $id); //Se tiver ID busca o cliente
+        $client = $this->entityManager->getReference(Client::class, $id); //Se tiver ID busca o cliente
+        $this->defineMessage('success', "Cliente {$client->getName()} excluido.");
 
-        $this->entityManager->remove($aluno); //remove dados do banco
+        $this->entityManager->remove($client); //remove dados do banco
         $this->entityManager->flush();
 
         header('Location: /');

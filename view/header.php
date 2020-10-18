@@ -29,3 +29,10 @@
 
 
         <h1 class="text-center"><?= $title; ?></h1>
+        <?php if (isset($_SESSION['message'])) : ?>
+            <div class="alert alert-<?= $_SESSION['type_message']; ?>"><?= $_SESSION['message']; ?></div>
+        <?php
+            unset($_SESSION['type_message']);
+            unset($_SESSION['message']);
+        endif;
+        ?>
