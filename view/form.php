@@ -1,7 +1,5 @@
 <?php include __DIR__ . '/header.php'; ?>
 
-<h1 class="text-center">Formulario</h1>
-
 <form method="POST" action="/salva">
     <input type="hidden" name="id" value="<?= isset($client) ? $client->getId() : ''; ?>">
     <div class="form-group">

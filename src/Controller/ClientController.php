@@ -3,10 +3,12 @@
 namespace Switek\Crud\Controller;
 
 use Switek\Crud\Entity\Client;
+use Switek\Crud\Helper\LoadViewTrait;
 use Switek\Crud\Infra\EntityManagerFactory;
 
 class ClientController
 {
+    use LoadViewTrait;
 
     private $entityManager;
 
@@ -19,14 +21,19 @@ class ClientController
     public function index()
     {
         $response = $this->entityManager->getRepository(Client::class);
-        $clients = $response->findAll();
-
-        include __DIR__ . '/../../view/index.php'; //Carrega a view
+        $data = [
+            'title' => "Listagem de clientes",
+            'clients' => $response->findAll()
+        ];
+        $this->loadView('index.php', $data); //Carrega a view
     }
 
     public function create()
     {
-        include __DIR__ . '/../../view/form.php'; //Carrega a view
+        $data = [
+            'title' => "Formulário de cadastro"
+        ];
+        $this->loadView('form.php', $data); //Carrega a view
     }
 
     public function edit()
@@ -41,8 +48,11 @@ class ClientController
             header('Location: /');
             return;
         }
-        $client = $this->entityManager->find(Client::class, $id); //Busca cliente pelo ID
-        include __DIR__ . '/../../view/form.php'; //Carrega a view
+        $data = [
+            'title' => "Formulário de edição",
+            'client' => $this->entityManager->find(Client::class, $id) //Busca cliente pelo ID
+        ];
+        $this->loadView('form.php', $data); //Carrega a view
     }
 
     public function store()

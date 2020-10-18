@@ -1,5 +1,4 @@
 <?php include __DIR__ . '/header.php'; ?>
-<h1 class="text-center">Listagem</h1>
 
 <table class="table">
     <thead>
