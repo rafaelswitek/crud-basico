@@ -1,5 +1,5 @@
 # crud-basico
- CRUD basico usando PHP puro com padrão MVC, Banco de dados MySql e Doctrine ORM para conexão com banco de dados.
+ CRUD basico usando PHP puro com padrão MVC, Banco de dados MySql e Doctrine ORM para conexão com banco de dados e Bootstrap para o front-end.
 
 Apos baixar o projeto entre na pasta e execute: 
 >composer install
