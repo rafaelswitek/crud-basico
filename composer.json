@@ -1,0 +1,12 @@
+{
+    "name": "rafaelswitek/crud-basico",
+    "description": "CRUD basico usando PHP puro",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Rafael Gonçalves",
+            "email": "rafaelswitek@gmail.com"
+        }
+    ],
+    "require": {}
+}
