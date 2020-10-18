@@ -21,8 +21,8 @@
                 <td><?= $row->getCpf(); ?></td>
                 <td><?= $row->getPhone(); ?></td>
                 <td>
-                    <a href="/editar-cliente?id=<?= $row->getID(); ?>" class="btn btn-primary">Editar</a>
-                    <a href="/excluir-cliente?id=<?= $row->getID(); ?>" class="btn btn-danger">Excluir</a>
+                    <a href="/editar?id=<?= $row->getID(); ?>" class="btn btn-primary">Editar</a>
+                    <a href="/excluir?id=<?= $row->getID(); ?>" class="btn btn-danger">Excluir</a>
                 </td>
             </tr>
         <?php endforeach; ?>
