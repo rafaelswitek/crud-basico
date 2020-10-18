@@ -1,5 +1,5 @@
 # crud-basico
- CRUD basico usando PHP puro
+ CRUD basico usando PHP puro com padrão MVC
 
 Apos baixar o projeto, executar: 
 >Composer install
