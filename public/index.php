@@ -2,7 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Switek\Crud\Controller\Client;
+use Switek\Crud\Controller\ClientController;
 
 $path = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/'; //Pega o caminho da url
 $routes = require __DIR__ . '/../config/routes.php'; //Carrega as rotas
@@ -16,5 +16,5 @@ session_start();
 
 $method = $routes[$path]; //Pega o metodo referente a url
 
-$client = new Client();
+$client = new ClientController();
 $client->$method();
